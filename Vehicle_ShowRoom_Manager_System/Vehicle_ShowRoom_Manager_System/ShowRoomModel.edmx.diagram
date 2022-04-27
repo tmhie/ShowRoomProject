@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a0ec131cda21493d81b28959bdf38c3c" Name="Diagram1">
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.Admin" Width="1.5" PointX="1.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.Customer" Width="1.5" PointX="5.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.Sale" Width="1.5" PointX="2.375" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.ShowRoom" Width="1.5" PointX="8" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.Vehicle" Width="1.5" PointX="8.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShowRoom_ManagerModel.VehicleImg" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_Sale_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_ShowRoom_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_Vehicle_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_Sale_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_ShowRoom_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_Vehicle_Sale" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_ShowRoom_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="ShowRoom_ManagerModel.FK_VehicleImg_Vehicle" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
