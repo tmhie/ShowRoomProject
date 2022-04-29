@@ -83,3 +83,5 @@ C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_M
 C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\obj\Debug\Vehicle_ShowRoom_Manager_System.pdb
 C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -11,24 +11,28 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Vehicle_ShowRoom_Manager_System.Models;
 
+
 namespace Vehicle_ShowRoom_Manager_System.Controllers
 {
     public class AdminsController : Controller
     {
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
+ 
         public ActionResult LoginAdmin()
         {
             return View();
         }
 
         // GET: Admins
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Admin.ToList());
         }
 
         // GET: Admins/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,7 +48,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Admins/Create
-        [Authorize(Roles = "super admin")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -55,15 +59,20 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "AdminId,AdminName,Email,Password,Status")] Admin admin)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && IsSuperAdminAsync())
             {
+                if(IsSuperAdminAsync())
                 db.Admin.Add(admin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            else
+            {
+                ModelState.AddModelError("", "you don't have permission to do that");
+            }
             return View(admin);
         }
         
@@ -94,6 +103,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Admins/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -113,33 +123,44 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "AdminId,AdminName,Email,Password,Status")] Admin admin)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && IsSuperAdminAsync())
             {
                 db.Entry(admin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ModelState.AddModelError("", "you dont have permission to do that");
+            }
             return View(admin);
         }
 
         // GET: Admins/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (IsSuperAdminAsync())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Admin admin = db.Admin.Find(id);
+                if (admin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(admin);
             }
-            Admin admin = db.Admin.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
+            return View();
         }
 
         // POST: Admins/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -157,6 +178,20 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public bool IsSuperAdminAsync()
+        {
+            string admiName = User.Identity.GetUserName();
+            int status = 2;
+            var admin = from Admin in db.Admin where Admin.AdminName == admiName && Admin.Status == status select Admin;
+            if (admin.Count() > 0) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
