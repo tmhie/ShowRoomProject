@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Vehicle_ShowRoom_Manager_System_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="RoomName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="AdminId" Type="int" />
+          <Property Name="Price" Type="float" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="DaliveryDate" Type="datetime" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="ShowRoom">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Price" Type="float" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="ImgPath" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Sale_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Sale">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleImg_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="VehicleImg" Type="Self.VehicleImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="VehicleImg">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Vehicle_ShowRoom_Manager_System_DataModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShowRoom" EntityType="Self.ShowRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleImg" EntityType="Self.VehicleImg" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Sale_Admin" Association="Self.FK_Sale_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Admin" Association="Self.FK_ShowRoom_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Customer" Association="Self.FK_ShowRoom_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Vehicle" Association="Self.FK_ShowRoom_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Admin" Association="Self.FK_Vehicle_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Sale" Association="Self.FK_Vehicle_Sale">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleImg_Vehicle" Association="Self.FK_VehicleImg_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleImg" EntitySet="VehicleImg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Vehicle_ShowRoom_Manager_System_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_Sale_Admin" FromRole="Admin" ToRole="Sale" />
+          <NavigationProperty Name="ShowRoom" Relationship="Self.FK_ShowRoom_Admin" FromRole="Admin" ToRole="ShowRoom" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_Vehicle_Admin" FromRole="Admin" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_Sale_Customer" FromRole="Customer" ToRole="Sale" />
+          <NavigationProperty Name="ShowRoom" Relationship="Self.FK_ShowRoom_Customer" FromRole="Customer" ToRole="ShowRoom" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="DaliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Sale_Admin" FromRole="Sale" ToRole="Admin" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Sale_Customer" FromRole="Sale" ToRole="Customer" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_Vehicle_Sale" FromRole="Sale" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="ShowRoom">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ShowRoom_Admin" FromRole="ShowRoom" ToRole="Admin" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_ShowRoom_Customer" FromRole="ShowRoom" ToRole="Customer" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_ShowRoom_Vehicle" FromRole="ShowRoom" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="VehicleId" />
+          </Key>
+          <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Vehicle_Admin" FromRole="Vehicle" ToRole="Admin" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_Vehicle_Sale" FromRole="Vehicle" ToRole="Sale" />
+          <NavigationProperty Name="ShowRoom" Relationship="Self.FK_ShowRoom_Vehicle" FromRole="Vehicle" ToRole="ShowRoom" />
+          <NavigationProperty Name="VehicleImg" Relationship="Self.FK_VehicleImg_Vehicle" FromRole="Vehicle" ToRole="VehicleImg" />
+        </EntityType>
+        <EntityType Name="VehicleImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="ImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_VehicleImg_Vehicle" FromRole="VehicleImg" ToRole="Vehicle" />
+        </EntityType>
+        <Association Name="FK_Sale_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Sale">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowRoom_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="ShowRoom" Type="Self.ShowRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="ShowRoom">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleImg_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="VehicleImg" Type="Self.VehicleImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="VehicleImg">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Vehicle_ShowRoom_Manager_System_DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" />
+          <EntitySet Name="ShowRoom" EntityType="Self.ShowRoom" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
+          <EntitySet Name="VehicleImg" EntityType="Self.VehicleImg" />
+          <AssociationSet Name="FK_Sale_Admin" Association="Self.FK_Sale_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Admin" Association="Self.FK_ShowRoom_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Admin" Association="Self.FK_Vehicle_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Customer" Association="Self.FK_ShowRoom_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Sale" Association="Self.FK_Vehicle_Sale">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowRoom_Vehicle" Association="Self.FK_ShowRoom_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="ShowRoom" EntitySet="ShowRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleImg_Vehicle" Association="Self.FK_VehicleImg_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleImg" EntitySet="VehicleImg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Vehicle_ShowRoom_Manager_System_DataModelStoreContainer" CdmEntityContainer="Vehicle_ShowRoom_Manager_System_DataEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DaliveryDate" ColumnName="DaliveryDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShowRoom">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.ShowRoom">
+              <MappingFragment StoreEntitySet="ShowRoom">
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="RoomAddress" ColumnName="RoomAddress" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleImg">
+            <EntityTypeMapping TypeName="Vehicle_ShowRoom_Manager_System_DataModel.VehicleImg">
+              <MappingFragment StoreEntitySet="VehicleImg">
+                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
