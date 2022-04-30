@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowRoomsController.cs" />
+    <Compile Include="Controllers\VehicleImgsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,6 +246,11 @@
     <Content Include="Views\ShowRooms\Details.cshtml" />
     <Content Include="Views\ShowRooms\Edit.cshtml" />
     <Content Include="Views\ShowRooms\Index.cshtml" />
+    <Content Include="Views\VehicleImgs\Create.cshtml" />
+    <Content Include="Views\VehicleImgs\Delete.cshtml" />
+    <Content Include="Views\VehicleImgs\Details.cshtml" />
+    <Content Include="Views\VehicleImgs\Edit.cshtml" />
+    <Content Include="Views\VehicleImgs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

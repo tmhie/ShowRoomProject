@@ -15,6 +15,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
         // GET: ShowRooms
+        [Authorize]
         public ActionResult Index()
         {
             var showRoom = db.ShowRoom.Include(s => s.Admin).Include(s => s.Customer).Include(s => s.Vehicle);
@@ -22,6 +23,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: ShowRooms/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "RoomId,RoomAddress,RoomName,AdminId,CustomerId,VehicleId,Status")] ShowRoom showRoom)
         {
             if (ModelState.IsValid)
@@ -105,6 +108,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: ShowRooms/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +125,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // POST: ShowRooms/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
