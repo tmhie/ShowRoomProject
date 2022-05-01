@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,9 +27,40 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // GET: Admins
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder,string currentFilter,string searchString , int? page)
         {
-            return View(db.Admin.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if(searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            ViewBag.CurrentFilter = searchString;
+            var sales = db.Sale.Include(e => e.Vehicle);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                sales = sales.Where(sale =>
+                    sale.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
+                    break;
+                default:
+                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(sales.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Admins/Details/5
