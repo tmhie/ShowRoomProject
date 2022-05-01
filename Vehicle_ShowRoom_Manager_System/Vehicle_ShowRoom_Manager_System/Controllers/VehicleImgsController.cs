@@ -16,6 +16,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
         // GET: VehicleImgs
+        [Authorize]
         public ActionResult Index()
         {
             var vehicleImg = db.VehicleImg.Include(v => v.Vehicle);
@@ -23,6 +24,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.VehicleId = new SelectList(db.Vehicle, "VehicleId", "VehicleName");
@@ -49,6 +52,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ImgId,VehicleId,ImgPath")] VehicleImg vehicleImg)
         {
             if (ModelState.IsValid)
@@ -63,6 +67,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +87,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ImgId,VehicleId,ImgPath")] VehicleImg vehicleImg)
         {
@@ -96,6 +102,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +118,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // POST: VehicleImgs/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
