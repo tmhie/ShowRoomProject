@@ -24,7 +24,7 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         }
     
         public int AdminId { get; set; }
-        [Display(Name = "Admin Name")]
+        [Display(Name = "Employee Name")]
         public string AdminName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
