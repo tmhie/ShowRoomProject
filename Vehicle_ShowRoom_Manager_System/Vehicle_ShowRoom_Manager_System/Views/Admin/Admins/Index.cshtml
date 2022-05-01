@@ -17,13 +17,13 @@
            new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Email
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
         </th>
         <th>
-            Password
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Password)
         </th>
         <th>
-            Status
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Status)        
         </th>
         <th></th>
     </tr>

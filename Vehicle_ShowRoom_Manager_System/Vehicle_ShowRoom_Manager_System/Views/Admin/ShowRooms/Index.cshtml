@@ -12,22 +12,22 @@
     <table class="table">
         <tr>
             <th>
-                RoomAddress
+                @Html.DisplayNameFor(model => model.FirstOrDefault().RoomAddress)
             </th>
             <th>
-                RoomName
+                @Html.DisplayNameFor(model => model.FirstOrDefault().RoomName)
             </th>
             <th>
-                Status
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
             </th>
             <th>
-                AdminName
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Admin.AdminName)
             </th>
             <th>
-                CustomerName
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Customer.CustomerName) 
             </th>
             <th>
-                VehicleName
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Vehicle.VehicleName)
             </th>
             <th></th>
         </tr>

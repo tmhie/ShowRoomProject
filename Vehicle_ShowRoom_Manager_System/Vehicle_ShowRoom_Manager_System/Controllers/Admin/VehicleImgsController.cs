@@ -134,7 +134,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         public JsonResult SaveFile(HttpPostedFileBase file)
         {
             string returnImgPath = string.Empty;
-            if(file.ContentLength > 0)
+            if (file.ContentLength > 0)
             {
                 string fileName, fileExtension, imgSavePath;
                 fileName = Path.GetFileNameWithoutExtension(file.FileName);
