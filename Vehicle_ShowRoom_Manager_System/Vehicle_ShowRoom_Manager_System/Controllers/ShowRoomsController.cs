@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -16,10 +17,44 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // GET: ShowRooms
         [Authorize]
-        public ActionResult Index()
+
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            ViewBag.CurrentFilter = searchString;
             var showRoom = db.ShowRoom.Include(s => s.Admin).Include(s => s.Customer).Include(s => s.Vehicle);
-            return View(showRoom.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                showRoom = showRoom.Where(v =>
+                    v.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    showRoom = showRoom.OrderByDescending(v => v.Vehicle.VehicleName);
+                    break;
+                default:
+                    showRoom = showRoom.OrderByDescending(v => v.Vehicle.VehicleName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(showRoom.ToPagedList(pageNumber, pageSize));
+
+
         }
 
         // GET: ShowRooms/Details/5
