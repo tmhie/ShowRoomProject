@@ -263,3 +263,7 @@ D:\Project3\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Man
 D:\Project3\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.Mvc.dll
 D:\Project3\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.xml
 D:\Project3\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.Mvc.xml
+C:\Users\AK\OneDrive\Tài liệu\GitHub\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.dll
+C:\Users\AK\OneDrive\Tài liệu\GitHub\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.Mvc.dll
+C:\Users\AK\OneDrive\Tài liệu\GitHub\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.xml
+C:\Users\AK\OneDrive\Tài liệu\GitHub\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\bin\PagedList.Mvc.xml

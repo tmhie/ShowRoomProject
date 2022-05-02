@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,8 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // GET: Admins
         [Authorize]
-        public ActionResult Index(string sortOrder,string currentFilter,string searchString , int? page)
+        public ActionResult Index(string currentFilter,string searchString , int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             if(searchString != null)
             {
                 page = 1;
@@ -42,7 +41,11 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
+<<<<<<< HEAD
             var admin = db.Admin.Include(e => e.Vehicle);
+=======
+            var admin  = db.Admin.Include(e => e.Vehicle);
+>>>>>>> c6a16ff6572e576c64cac266336ed82086d1a3aa
             if (!String.IsNullOrEmpty(searchString))
             {
                 admin = admin.Where(admin1 => admin1.AdminName.ToLower().Contains(searchString.ToLower()));
