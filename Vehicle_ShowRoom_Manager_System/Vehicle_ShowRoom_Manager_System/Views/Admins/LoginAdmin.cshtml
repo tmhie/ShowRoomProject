@@ -1,0 +1,37 @@
+﻿@using Vehicle_ShowRoom_Manager_System.Models
+@model LoginAdmin
+@{
+    ViewBag.Title = "LoginAdmin";
+}
+
+
+<h2>LoginAdmin</h2>
+
+@using (Html.BeginForm("LoginAdmin", "Admins", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <div>
+            <label>AdminEmail: </label>
+            @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control", @placeholder = "Email", @autofocus = "autofocus" })
+        </div>
+        <div>
+            <label>PassWord: </label>
+            @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", @placeholder = "password", @type = "password" })
+        </div>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(Model => Model.RememberMe)
+                Remenberme
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="login" />
+        </div>
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}
+
