@@ -42,25 +42,16 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-            var sales = db.Sale.Include(e => e.Vehicle);
+            var admin = db.Admin.Include(e => e.Vehicle);
             if (!String.IsNullOrEmpty(searchString))
             {
-                sales = sales.Where(sale =>
-                    sale.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
+                admin = admin.Where(admin1 => admin1.AdminName.ToLower().Contains(searchString.ToLower()));
             }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
-                    break;
-                default:
-                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
-                    break;
-            }
+            admin = admin.OrderByDescending(admin1 => admin1.AdminName);
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(sales.ToPagedList(pageNumber,pageSize));
+            return View(admin.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Admins/Details/5
