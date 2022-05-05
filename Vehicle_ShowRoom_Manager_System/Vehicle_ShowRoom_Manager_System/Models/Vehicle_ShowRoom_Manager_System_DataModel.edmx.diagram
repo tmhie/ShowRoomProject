@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="43017473a083408d92f2cca41b5d5df6" Name="Diagram1">
-        <EntityTypeShape EntityType="Vehicle_ShowRoom_Manager_System_DataModel.Admin" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+      <Diagram DiagramId="43017473a083408d92f2cca41b5d5df6" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="Vehicle_ShowRoom_Manager_System_DataModel.Admin" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Vehicle_ShowRoom_Manager_System_DataModel.Customer" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Vehicle_ShowRoom_Manager_System_DataModel.Sale" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Vehicle_ShowRoom_Manager_System_DataModel.ShowRoom" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />

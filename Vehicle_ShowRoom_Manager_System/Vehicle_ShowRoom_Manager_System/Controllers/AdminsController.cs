@@ -41,11 +41,8 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-<<<<<<< HEAD
             var admin = db.Admin.Include(e => e.Vehicle);
-=======
-            var admin  = db.Admin.Include(e => e.Vehicle);
->>>>>>> c6a16ff6572e576c64cac266336ed82086d1a3aa
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 admin = admin.Where(admin1 => admin1.AdminName.ToLower().Contains(searchString.ToLower()));
