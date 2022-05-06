@@ -11,12 +11,10 @@ namespace Vehicle_ShowRoom_Manager_System.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ShowRoom
     {
         public int RoomId { get; set; }
-        [Display(Name = "Show room address")]
         public string RoomAddress { get; set; }
         public string RoomName { get; set; }
         public Nullable<int> AdminId { get; set; }
