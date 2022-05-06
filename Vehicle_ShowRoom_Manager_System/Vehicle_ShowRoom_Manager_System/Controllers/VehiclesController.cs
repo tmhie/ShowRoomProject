@@ -37,8 +37,15 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
                 vehicles = vehicles.Where(v =>
                     v.VehicleName.ToLower().Contains(searchString.ToLower()));
             }
-            
-            vehicles = vehicles.OrderByDescending(vh => vh.VehicleName);
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.VehicleName);
+                    break;
+                default:
+                    vehicles = vehicles.OrderByDescending(v => v.VehicleName);
+                    break;
+            }
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

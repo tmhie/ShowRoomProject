@@ -31,15 +31,22 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-            var customers = db.Customer.Include(customer => customer.Sale);
+            var customers = db.Customer.Include(v => v.Sale);
             if (!String.IsNullOrEmpty(searchString))
             {
                 customers = customers.Where(v =>
                     v.CustomerName.ToLower().Contains(searchString.ToLower()));
             }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    customers = customers.OrderByDescending(v => v.CustomerName);
+                    break;
+                default:
+                    customers = customers.OrderByDescending(v => v.CustomerName);
+                    break;
+            }
 
-            customers = customers.OrderByDescending(customer1 => customer1.CustomerName);
- 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(customers.ToPagedList(pageNumber, pageSize));

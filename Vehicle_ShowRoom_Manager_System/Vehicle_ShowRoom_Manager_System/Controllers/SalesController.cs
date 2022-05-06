@@ -31,14 +31,21 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-            var sales = db.Sale.Include(s1 => s1.Admin).Include(s2 => s2.Customer).Include(s3 => s3.Vehicle);
+            var sales = db.Sale.Include(e => e.Admin).Include(s => s.Customer).Include(s => s.Vehicle);
             if (!String.IsNullOrEmpty(searchString))
             {
                 sales = sales.Where(sale =>
                     sale.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
             }
-            
-            sales = sales.OrderByDescending(sale1 => sale1.Vehicle.VehicleName);
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
+                    break;
+                default:
+                    sales = sales.OrderByDescending(exam => exam.Vehicle.VehicleName);
+                    break;
+            }
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
