@@ -4,42 +4,46 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="containerr">
+    <h2 class="h2">Vehicle Imgs</h2>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().ImgPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Vehicle.VehicleName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        <button class="btn btn-default">
+            @Html.ActionLink("Create New", "Create")
+        </button>
+     
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImgPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicle.VehicleName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ImgId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ImgId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ImgId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ImgPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Vehicle.VehicleName)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImgPath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicle.VehicleName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "VehicleImgs", new { id = item.ImgId })" class="btn btn-sm btn-success" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="@Url.Action("Details", "VehicleImgs", new { id = item.ImgId })" class="btn btn-sm btn-warning" title="Details"><i class="fa-solid fa-eye"></i></a>
+                    <a href="@Url.Action("Delete", "VehicleImgs", new { id = item.ImgId })" class="btn btn-sm btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

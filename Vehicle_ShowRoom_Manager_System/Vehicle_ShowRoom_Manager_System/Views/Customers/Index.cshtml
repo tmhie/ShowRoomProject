@@ -1,70 +1,75 @@
 ﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<Vehicle_ShowRoom_Manager_System.Models.Customer>
-d
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="containerr">
+    <h2 class="h2">Customer</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            CustomerName
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Password
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            Gender
-        </th>
-        <th>
-            Status
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        <button class="btn btn-default">
+            @Html.ActionLink("Create New", "Create")
+        </button>  
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
-            </td>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    <a href="@Url.Action("Edit", "Customers", new { id = item.CustomerId })" class="btn btn-sm btn-success" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="@Url.Action("Details", "Customers", new { id = item.CustomerId })" class="btn btn-sm btn-warning" title="Details"><i class="fa-solid fa-eye"></i></a>
+                    <a href="@Url.Action("Delete", "Customers", new { id = item.CustomerId })" class="btn btn-sm btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

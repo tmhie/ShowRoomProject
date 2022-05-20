@@ -4,73 +4,75 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="containerr">
+    <h2 class="h2">Vehicle</h2>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().VehicleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().VehicleType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)           
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Price)         
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().CreateDate)          
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Status)           
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Admin.AdminName)           
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        <button class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
+        
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Admin.AdminName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.VehicleId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.VehicleId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.VehicleId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().VehicleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().VehicleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Admin.AdminName)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Admin.AdminName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Vehicles", new { id = item.VehicleId })" class="btn btn-sm btn-success" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="@Url.Action("Details", "Vehicles", new { id = item.VehicleId })" class="btn btn-sm btn-warning" title="Details"><i class="fa-solid fa-eye"></i></a>
+                    <a href="@Url.Action("Delete", "Vehicles", new { id = item.VehicleId })" class="btn btn-sm btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

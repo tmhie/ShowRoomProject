@@ -3,32 +3,38 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="containerr">
+    <h2 class="h2">Details Vehicle Img</h2>
 
-<h2>Details</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ImgPath)
+            </dt>
 
-<div>
-    <h4>VehicleImg</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgPath)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ImgPath)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImgPath)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vehicle.VehicleName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.VehicleName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vehicle.VehicleName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.VehicleName)
-        </dd>
+        </dl>
+    </div>
+    <p>
+        <button class="btn btn-default">
+            @Html.ActionLink("Back to List", "Index")
+        </button>
+        <button class="btn btn-default">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ImgId })
+        </button>
 
-    </dl>
+       
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ImgId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
