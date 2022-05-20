@@ -50,7 +50,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
             return View(showRoom.ToPagedList(pageNumber, pageSize));
 
