@@ -18,6 +18,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // GET: VehicleImgs
         [Authorize]
+<<<<<<< HEAD
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             if (searchString != null)
@@ -39,6 +40,36 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
             int pageNumber = (page ?? 1);
             return View(vehicleImg.ToPagedList(pageNumber, pageSize));
 
+=======
+<<<<<<< HEAD
+        public ActionResult Index(string currentFilter, string searchString, int? page)
+        {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            ViewBag.CurrentFilter = searchString;
+            var vehicleImg = db.VehicleImg.Include(e => e.Vehicle.VehicleImg);
+
+            vehicleImg = vehicleImg.OrderByDescending(vh => vh.ImgId);
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(vehicleImg.ToPagedList(pageNumber, pageSize));
+
+=======
+        public ActionResult Index()
+        {
+            var vehicleImg = db.VehicleImg.Include(v => v.Vehicle);
+            return View(vehicleImg.ToList());
+>>>>>>> bc549e502ef81ff35c04d650ea5757334f6b05ed
+>>>>>>> 8c84084aa2e58d6a2366f31555e044ebd3ca943b
         }
 
         // GET: VehicleImgs/Details/5
