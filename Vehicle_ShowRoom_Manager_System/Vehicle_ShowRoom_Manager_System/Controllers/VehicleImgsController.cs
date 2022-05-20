@@ -17,10 +17,9 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
         // GET: VehicleImgs
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        [Authorize]
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             if (searchString != null)
             {
                 page = 1;
@@ -32,22 +31,18 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-            var vehicleImgs = db.VehicleImg.Include(v => v.Vehicle);
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                vehicleImgs = vehicleImgs.Where(v =>
-                    v.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
-            }
+            var vehicleImg = db.VehicleImg.Include(e => e.Vehicle.VehicleImg);
 
-            vehicleImgs = vehicleImgs.OrderByDescending(v => v.Vehicle.VehicleName);
+            vehicleImg = vehicleImg.OrderByDescending(vh => vh.ImgId);
+
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(vehicleImgs.ToPagedList(pageNumber, pageSize));
-
+            return View(vehicleImg.ToPagedList(pageNumber, pageSize));
 
         }
 
         // GET: VehicleImgs/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,6 +58,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.VehicleId = new SelectList(db.Vehicle, "VehicleId", "VehicleName");
@@ -74,6 +70,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ImgId,VehicleId,ImgPath")] VehicleImg vehicleImg)
         {
             if (ModelState.IsValid)
@@ -88,6 +85,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,6 +105,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ImgId,VehicleId,ImgPath")] VehicleImg vehicleImg)
         {
@@ -121,6 +120,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: VehicleImgs/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,6 +136,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // POST: VehicleImgs/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -151,7 +152,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         public JsonResult SaveFile(HttpPostedFileBase file)
         {
             string returnImgPath = string.Empty;
-            if(file.ContentLength > 0)
+            if (file.ContentLength > 0)
             {
                 string fileName, fileExtension, imgSavePath;
                 fileName = Path.GetFileNameWithoutExtension(file.FileName);

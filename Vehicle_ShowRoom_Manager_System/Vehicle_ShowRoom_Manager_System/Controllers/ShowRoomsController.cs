@@ -33,15 +33,22 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
 
             ViewBag.CurrentFilter = searchString;
-            var showRoom = db.ShowRoom.Include(sh1 => sh1.Admin).Include(sh2 => sh2.Customer).Include(sh3 => sh3.Vehicle);
+            var showRoom = db.ShowRoom.Include(s => s.Admin).Include(s => s.Customer).Include(s => s.Vehicle);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                showRoom = showRoom.Where( sh=>
-                    sh.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
+                showRoom = showRoom.Where(v =>
+                    v.Vehicle.VehicleName.ToLower().Contains(searchString.ToLower()));
             }
-
-            showRoom = showRoom.OrderByDescending(sr1 => sr1.Vehicle.VehicleName);
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    showRoom = showRoom.OrderByDescending(v => v.Vehicle.VehicleName);
+                    break;
+                default:
+                    showRoom = showRoom.OrderByDescending(v => v.Vehicle.VehicleName);
+                    break;
+            }
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

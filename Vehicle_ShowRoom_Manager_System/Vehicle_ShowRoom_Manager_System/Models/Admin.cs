@@ -11,7 +11,8 @@ namespace Vehicle_ShowRoom_Manager_System.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Admin
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,7 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         }
     
         public int AdminId { get; set; }
+        [Display(Name = "Employee Name")]
         public string AdminName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -34,5 +36,13 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         public virtual ICollection<ShowRoom> ShowRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vehicle> Vehicle { get; set; }
+    }
+    public class LoginAdmin
+    {
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        public bool RememberMe { get; set; }
     }
 }
