@@ -196,6 +196,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\backgroundAD.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />

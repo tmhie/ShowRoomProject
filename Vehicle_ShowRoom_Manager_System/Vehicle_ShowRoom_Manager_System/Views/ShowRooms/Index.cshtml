@@ -4,11 +4,16 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="containerr">
+    <h2 class="h2">ShowRoom</h2>
 
-<h2>Index</h2>
+    <p>
+        <button class="btn btn-default">
+            @Html.ActionLink("Create New", "Create")
+        </button>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+    </p>
+
     <table class="table">
         <tr>
             <th>
@@ -24,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Admin.AdminName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Customer.CustomerName) 
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Customer.CustomerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstOrDefault().Vehicle.VehicleName)
@@ -54,9 +59,9 @@
                     @Html.DisplayFor(modelItem => item.Vehicle.VehicleName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+                    <a href="@Url.Action("Edit", "ShowRooms", new { id = item.RoomId })" class="btn btn-sm btn-success" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="@Url.Action("Details", "ShowRooms", new { id = item.RoomId })" class="btn btn-sm btn-warning" title="Details"><i class="fa-solid fa-eye"></i></a>
+                    <a href="@Url.Action("Delete", "ShowRooms", new { id = item.RoomId })" class="btn btn-sm btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
         }
@@ -67,3 +72,4 @@
 
     @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

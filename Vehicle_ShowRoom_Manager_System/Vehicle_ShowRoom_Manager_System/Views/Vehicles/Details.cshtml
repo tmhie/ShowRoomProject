@@ -3,72 +3,76 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="containerr">
+    <h2 class="h2">Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VehicleName)
+            </dt>
 
-<div>
-    <h4>Vehicle</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.VehicleName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VehicleName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VehicleName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VehicleType)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VehicleType)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Admin.AdminName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Admin.AdminName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Admin.AdminName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Admin.AdminName)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        <button class="btn btn-default">
+             @Html.ActionLink("Back to List", "Index")
+        </button>
+        <button class="btn btn-default">
+             @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleId })
+        </button>
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
