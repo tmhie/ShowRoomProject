@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Vehicle_ShowRoom_Manager_System.Models.VehicleImg>
+
+@{
+    ViewBag.Title = "Car Detail";
+}
+
+<div class="login-form-container">
+
+    <span id="close-login-form" class="fas fa-times"></span>
+
+    <form action="">
+        <h3>user login</h3>
+        <input type="email" placeholder="email" class="box">
+        <input type="password" placeholder="password" class="box">
+        <input type="submit" value="login" class="btn">
+    </form>
+
+</div>
+<div class="body">
+    <div class="flex-box">
+        <div class="left">
+            <div class="col-2">
+                <img src="@Html.DisplayFor(model => model.FirstOrDefault().ImgPath)" id="ProductImg">
+                <div class="small-img-row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="small-img-col">
+                            <img src="@Html.DisplayFor(model => model.FirstOrDefault().ImgPath)" width="100%" class="small-img">
+                        </div>
+                    }
+                    @*<div class="small-img-col">
+            <img src="~/image/xe2.jpg" width="100%" class="small-img">
+        </div>
+        <div class="small-img-col">
+            <img src="~/image/xe3.jpg" width="100%" class="small-img">
+        </div>
+        <div class="small-img-col">
+            <img src="~/image/xe4.jpg" width="100%" class="small-img">
+        </div>
+                    *@
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="pname">VinFast Lux</div>
+            <div class="title">220 CDI 4Matic AMG Line 5dr Auto 2014</div>
+            <div class="localtion util__spacing-bottom-1">
+                <div class="localtion-item">
+                    <i class="localtion-icon fa fa-map-pin" aria-hidden="true"></i>
+                    <span class="localtion-text">Viet Nam</span>
+                </div>
+                <div class="localtion-item">
+                    <i class="localtion-icon fa fa-truck" aria-hidden="true"></i>
+                    <span class="localtion-text">Home delivery available</span>
+                </div>
+            </div>
+
+            <h2>$199.00</h2>
+            <span class="price-lable">Cash Price</span>
+            <hr />
+            <h2>Vehicle information</h2>
+            <div class="dtext">
+                <span class="text">
+                    The combination of strong appearance and perfect structure of the exterior creates a luxurious but still sophisticated highlight
+                    for LUX A2.0, blowing new breeze into the elegant design of the regular sedan.
+                </span>
+            </div>
+            <button class="button">Contact to +123-456-7890 or +111-222-3333</button>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallImg = document.getElementsByClassName("small-img");
+    SmallImg[0].onclick = function () {
+        ProductImg.src = SmallImg[0].src;
+    }
+    SmallImg[1].onclick = function () {
+        ProductImg.src = SmallImg[1].src;
+    }
+    SmallImg[2].onclick = function () {
+        ProductImg.src = SmallImg[2].src;
+    }
+    SmallImg[3].onclick = function () {
+        ProductImg.src = SmallImg[3].src;
+    }
+</script>
+

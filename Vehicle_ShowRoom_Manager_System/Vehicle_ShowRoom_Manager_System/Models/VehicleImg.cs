@@ -19,5 +19,6 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         public string ImgPath { get; set; }
     
         public virtual Vehicle Vehicle { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,6 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
 
         // GET: VehicleImgs
         [Authorize]
-<<<<<<< HEAD
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             if (searchString != null)
@@ -38,14 +38,8 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(vehicleImg.ToPagedList(pageNumber, pageSize));
-
-=======
-        public ActionResult Index()
-        {
-            var vehicleImg = db.VehicleImg.Include(v => v.Vehicle);
-            return View(vehicleImg.ToList());
->>>>>>> bc549e502ef81ff35c04d650ea5757334f6b05ed
         }
+
 
         // GET: VehicleImgs/Details/5
         [Authorize]
