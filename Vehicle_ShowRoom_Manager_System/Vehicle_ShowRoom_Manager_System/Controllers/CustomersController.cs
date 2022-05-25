@@ -69,29 +69,6 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Customers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,CustomerName,Email,Password,Address,Gender,Status")] Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Customer.Add(customer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(customer);
-        }
-
         // GET: Customers/Edit/5
         public ActionResult Edit(int? id)
         {

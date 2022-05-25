@@ -42,8 +42,7 @@
             </div>
         </div>
         <div class="right">
-            <div class="pname">VinFast Lux</div>
-            <div class="title">220 CDI 4Matic AMG Line 5dr Auto 2014</div>
+            <div class="pname">@Html.DisplayFor(model => model.FirstOrDefault().Vehicle.VehicleName)</div>
             <div class="localtion util__spacing-bottom-1">
                 <div class="localtion-item">
                     <i class="localtion-icon fa fa-map-pin" aria-hidden="true"></i>
@@ -55,17 +54,16 @@
                 </div>
             </div>
 
-            <h2>$199.00</h2>
+            <h2>@Html.DisplayFor(model => model.FirstOrDefault().Vehicle.Price) vnd</h2>
             <span class="price-lable">Cash Price</span>
             <hr />
-            <h2>Vehicle information</h2>
+            <h2>Vehicle Description</h2>
             <div class="dtext">
                 <span class="text">
-                    The combination of strong appearance and perfect structure of the exterior creates a luxurious but still sophisticated highlight
-                    for LUX A2.0, blowing new breeze into the elegant design of the regular sedan.
+                    @Html.DisplayFor(model => model.FirstOrDefault().Vehicle.Description)
                 </span>
             </div>
-            <button class="button">Contact to +123-456-7890 or +111-222-3333</button>
+            <button class="button">Contact to +123-456-7890 or +111-222-3333 for more information</button>
 
         </div>
     </div>

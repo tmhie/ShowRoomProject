@@ -76,7 +76,7 @@
                         <h3>@Html.DisplayFor(modelItem => item.VehicleName)</h3>
                         <div class="price"> <span>price : </span> @Html.DisplayFor(modelItem => item.Price) vnđ</div>
 
-                        @Html.ActionLink("check out", "CarDetail", "", new {id = item.VehicleId }, new { @class = "btn" })
+                        @Html.ActionLink("check out", "CarDetail", "Home", new {id = item.VehicleId }, new { @class = "btn" })
                     </div>
                 </div>
             }
@@ -111,7 +111,7 @@
                                     <i class="fas fa-star-half-alt"></i>
                                 </div>
                                 <div class="price">@Html.DisplayFor(modelItem => item.Price) vnđ</div>
-                                @Html.ActionLink("check out", "CarDetail", "", new { id = item.VehicleId }, new { @class = "btn" })
+                                @Html.ActionLink("check out", "CarDetail", "Home", new { id = item.VehicleId }, new { @class = "btn" })
                                 @*<a href="~/Home/CarDetail" class="btn">check out</a>*@
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                 <i class="fas fa-star-half-alt"></i>
                             </div>
                             <div class="price">@Html.DisplayFor(modelItem => item.Price) vnđ</div>
-                            @Html.ActionLink("check out", "CarDetail", "", new { id = item.VehicleId }, new { @class = "btn" })
+                            @Html.ActionLink("check out", "CarDetail", "Home", new { id = item.VehicleId }, new { @class = "btn" })
                         </div>
                     </div>
             }                

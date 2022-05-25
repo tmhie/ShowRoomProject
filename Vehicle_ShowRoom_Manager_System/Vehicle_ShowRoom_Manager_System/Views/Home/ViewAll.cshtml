@@ -1,7 +1,11 @@
-﻿
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Vehicle_ShowRoom_Manager_System.Models.Vehicle>
+
 @{
     ViewBag.Title = "View all";
-    
+
+
+
 }
 
 <div class="login-form-container">
@@ -20,177 +24,31 @@
     <section class="car-container">
         <h1 class="heading"> <span>All</span><span> Off</span><span> Our</span><span> Cars</span> </h1>
         <div class="car-content">
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+            @foreach (var item in Model)
+            {
+                <div class="box">
+                    <div class="box-img">
+                        <img src="@Html.DisplayFor(modelitem => item.VehicleImg.FirstOrDefault().ImgPath)">
                     </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                    <p>2019</p>
+                    <div class="rating">
+                        <h3>@Html.DisplayFor(modelItem => item.VehicleName)</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
                     </div>
+                    <hr>
+                    <h2>@Html.DisplayFor(modelItem => item.Price) vnd</h2>
+                    @Html.ActionLink("Detail", "CarDetail", "", new { id = item.VehicleId }, new { @class = "btn" })
                 </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="~/image/Car1.jpg">
-                </div>
-                <p>2019</p>
-                <div class="rating">
-                    <h3>VinFast Lux</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <hr>
-                <h2>$199.00</h2>
-                <a href="~/Home/CarDetail" class="btn">Detail</a>
-            </div>
+            }
         </div>
     </section>
 </div>
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("ViewAll", new { page}))
