@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -30,27 +32,31 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         [Authorize]
         public ActionResult Index(string currentFilter,string searchString , int? page)
         {
-            if(searchString != null)
+            if (IsSuperAdminAsync())
             {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+                if (searchString != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
 
 
-            ViewBag.CurrentFilter = searchString;
-            var admin  = db.Admin.Include(e => e.Vehicle);
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                admin = admin.Where(admin1 => admin1.AdminName.ToLower().Contains(searchString.ToLower()));
-            }
-            admin = admin.OrderByDescending(admin1 => admin1.AdminName);
+                ViewBag.CurrentFilter = searchString;
+                var admin = db.Admin.Include(e => e.Vehicle);
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    admin = admin.Where(admin1 => admin1.AdminName.ToLower().Contains(searchString.ToLower()));
+                }
+                admin = admin.OrderByDescending(admin1 => admin1.AdminName);
 
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(admin.ToPagedList(pageNumber,pageSize));
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(admin.ToPagedList(pageNumber, pageSize));
+            }
+            return RedirectToAction("Index", "Vehicles");
         }
 
         // GET: Admins/Details/5
@@ -86,7 +92,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         {
             if (ModelState.IsValid && IsSuperAdminAsync())
             {
-                if(IsSuperAdminAsync())
+                admin.Password = EncodePassword(admin.Password);
                 db.Admin.Add(admin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,7 +109,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         public async Task<ActionResult> LoginAdmin(LoginAdmin admin)
         {
             string query = "select * from Admin where Email = @p0 and Password = @p1";
-            Admin admin1 = await db.Admin.SqlQuery(query, admin.Email, admin.Password).SingleOrDefaultAsync(); 
+            Admin admin1 = await db.Admin.SqlQuery(query, admin.Email, EncodePassword(admin.Password)).SingleOrDefaultAsync(); 
             if (admin1!= null && ModelState.IsValid)
             {
                 FormsAuthentication.SetAuthCookie(admin1.AdminName, admin.RememberMe);
@@ -150,6 +156,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         {
             if (ModelState.IsValid && IsSuperAdminAsync())
             {
+                admin.Password = EncodePassword(admin.Password);
                 db.Entry(admin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -204,8 +211,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         public bool IsSuperAdminAsync()
         {
             string admiName = User.Identity.GetUserName();
-            int status = 2;
-            var admin = from Admin in db.Admin where Admin.AdminName == admiName && Admin.Status == status select Admin;
+            var admin = db.Admin.Where(w => w.AdminName == admiName && w.Status == 2);
             if (admin.Count() > 0) 
             {
                 return true;
@@ -214,6 +220,13 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
             {
                 return false;
             }
+        }
+        public static string EncodePassword(string password)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(password);
+            Byte[] endcodeBytes = md5.ComputeHash(originalBytes);
+            return BitConverter.ToString(endcodeBytes);
         }
     }
 }

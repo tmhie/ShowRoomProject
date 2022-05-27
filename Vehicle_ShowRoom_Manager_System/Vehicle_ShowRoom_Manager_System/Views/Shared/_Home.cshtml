@@ -16,13 +16,11 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <link href="~/css/style.css" rel="stylesheet" />
 
-
-
     <!--<script src="~/Scripts/script.js"></script>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 
@@ -32,16 +30,46 @@
 
         <a href="~/Home/Index" class="logo"> <span>my</span>showroom </a>
         <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#vehicles">vehicles</a>
+            @Html.ActionLink("Home", "Index", "Home")
+            @Html.ActionLink("Vehicles", "ViewAll", "Home")
             <a href="#featured">featured</a>
             <a href="#contact">contact</a>
         </nav>
+        @if (Session["UserID"] == null)
+        {
+            @Html.ActionLink("Login", "Login", "Home", new { @class = "btn" })
+        }
+        else
+        {
+            <div>Hello: @Session["UserName"]! <a>@Html.ActionLink("Logout", "Logout", "Home")</a></div>
+        }
+        <div class="login-form-container">
 
-        <div id="login-btn">
-            <button class="btn">login</button>
-            <i class="far fa-user"></i>
+            <span id="close-login-form" class="fas fa-times"></span>
+
+            <div class="wrapper">
+                <div class="title-text">
+                    <div class="title login">
+                        Login
+                    </div>
+                    <div class="title signup">
+                        SignUp
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="slide-controls">
+                        <input type="radio" name="slide" id="login" checked>
+                        <input type="radio" name="slide" id="signup">
+                        <label for="login" class="slide login">Login</label>
+                        <label for="signup" class="slide signup">SignUp</label>
+                        <div class="slider-tab"></div>
+                    </div>
+                    <div class="form-inner">
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </header>
     <div class="container body-content">
@@ -96,7 +124,7 @@
 
     </section>
     @Scripts.Render("~/bundles/jquery")
-
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script type="text/javascript" src="~/Scripts/script.js"></script>
 </body>

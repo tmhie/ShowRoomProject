@@ -43,7 +43,7 @@
                     </div>
                     <hr>
                     <h2>@Html.DisplayFor(modelItem => item.Price) vnd</h2>
-                    @Html.ActionLink("Detail", "CarDetail", "", new { id = item.VehicleId }, new { @class = "btn" })
+                    @Html.ActionLink("Detail", "CarDetail", "Home", new { id = item.VehicleId }, new { @class = "btn" })
                 </div>
             }
         </div>

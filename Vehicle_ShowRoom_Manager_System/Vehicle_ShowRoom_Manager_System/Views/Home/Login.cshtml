@@ -1,0 +1,35 @@
+﻿@using Vehicle_ShowRoom_Manager_System.Models
+@model LoginUser
+
+<body class="bodylogin">
+    <div class="login-01">
+        <div class="one-login  hvr-float-shadow">
+            <div class="one-login-head">
+                <img src="~/image/top-lock.png" alt="" />
+                <h1>LOGIN</h1>
+                <span></span>
+            </div>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "formlogin" }))
+            {
+                <div>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "text", placeholder = "User Name" })
+                </div>
+                <div>
+                    @Html.PasswordFor(model => model.Password, new { @class = "text", placeholder = "Password" })
+                </div>
+                <div class="p-container">
+                    <label class="checkbox"><input type="checkbox" name="checkbox" checked><i></i>Remember Me</label>
+                    <h6><a href="#">Forgot Password ?</a> </h6>
+                    <div class="clear"> </div>
+                </div>
+                <div class="submit">
+                    <input type="submit" value="SIGN IN">
+                </div>
+
+                <h5>Don't have an account ?@Html.ActionLink("Sign Up", "Register", "Home")</h5>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            }
+        </div>
+    </div>
+</body>
+

@@ -40,5 +40,6 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         public virtual ICollection<ShowRoom> ShowRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleImg> VehicleImg { get; set; }
+        public virtual LoginUser loginUser { get; set; }
     }
 }

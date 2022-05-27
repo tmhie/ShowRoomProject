@@ -18,7 +18,7 @@
 </div>
 <div class="body">
     <div class="flex-box">
-        <div class="left">
+        @*@<div class="left">
             <div class="col-2">
                 <img src="@Html.DisplayFor(model => model.FirstOrDefault().ImgPath)" id="ProductImg">
                 <div class="small-img-row">
@@ -28,18 +28,94 @@
                             <img src="@Html.DisplayFor(model => model.FirstOrDefault().ImgPath)" width="100%" class="small-img">
                         </div>
                     }
-                    @*<div class="small-img-col">
-            <img src="~/image/xe2.jpg" width="100%" class="small-img">
+                </div>
+            </div>
         </div>
-        <div class="small-img-col">
-            <img src="~/image/xe3.jpg" width="100%" class="small-img">
+        *@
+        <div class="left">
+            <div class="slider">
+                <div class="slides">
+
+                    @{int num = 0;
+                        string id, c;}
+
+                    @foreach (var item in Model)
+                    {
+                        num++;
+                        id = "radio" + num.ToString();
+                        <input type="radio" name="radio-btn" id="@id">
+                    }
+                    @*
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+                    *@
+                    @{num = 0;}
+                    @foreach (var item in Model)
+                    {
+                        if (num == 0)
+                        {
+                            <div class="slide first">
+                                <img src="@Html.DisplayFor(modelItem => item.ImgPath)" alt="">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="slide">
+                                <img src="@Html.DisplayFor(modelItem => item.ImgPath)" alt="">
+                            </div>
+                        }
+                        num++;
+
+                    }
+                    @*
+        <div class="slide first">
+            <img src="~/image/Car1.jpg" alt="">
         </div>
-        <div class="small-img-col">
-            <img src="~/image/xe4.jpg" width="100%" class="small-img">
+        <div class="slide">
+            <img src="~/image/xe2.jpg" alt="">
         </div>
+        <div class="slide">
+            <img src="~/image/xe3.jpg" alt="">
+        </div>
+        <div class="slide">
+            <img src="~/image/xe4.jpg" alt="">
+        </div>
+                    *@
+                    <div class="navigation-auto">
+                        @{num = 0;}
+                        @foreach (var item in Model)
+                        {
+                            num++;
+                            c = "auto-btn" + num.ToString();
+                            <div class="@c"></div>
+                        }
+                        @*
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+                        *@
+                    </div>
+                </div>
+                <div class="navigation-manual">
+                    @{num = 0;} 
+                    @foreach (var item in Model)
+                    {
+                        num++;
+                        c = "radio" + num.ToString();
+                        <label for="@c" class="manual-btn"></label>
+                    }
+                    @*
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
                     *@
                 </div>
             </div>
+
         </div>
         <div class="right">
             <div class="pname">@Html.DisplayFor(model => model.FirstOrDefault().Vehicle.VehicleName)</div>
@@ -68,23 +144,12 @@
         </div>
     </div>
 
-</div>
+        </div>
 
 
 <script>
-    var ProductImg = document.getElementById("ProductImg");
-    var SmallImg = document.getElementsByClassName("small-img");
-    SmallImg[0].onclick = function () {
-        ProductImg.src = SmallImg[0].src;
-    }
-    SmallImg[1].onclick = function () {
-        ProductImg.src = SmallImg[1].src;
-    }
-    SmallImg[2].onclick = function () {
-        ProductImg.src = SmallImg[2].src;
-    }
-    SmallImg[3].onclick = function () {
-        ProductImg.src = SmallImg[3].src;
-    }
+    
+
+
 </script>
 

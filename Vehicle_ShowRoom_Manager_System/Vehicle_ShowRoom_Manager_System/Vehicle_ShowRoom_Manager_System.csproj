@@ -154,6 +154,7 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Vehicle_ShowRoom_Manager_System_DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BigViewModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Vehicle_ShowRoom_Manager_System_DataModel.tt</DependentUpon>
     </Compile>
@@ -196,39 +197,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\backgroundAD.jpg" />
+    <Content Include="image\bglogin.jpg" />
+    <Content Include="image\search.jpg" />
+    <Content Include="image\tick.png" />
+    <Content Include="image\tip.png" />
+    <Content Include="image\tip2.png" />
+    <Content Include="image\tip3.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="image\car-1.png" />
-    <Content Include="image\car-2.png" />
-    <Content Include="image\car-3.png" />
-    <Content Include="image\car-4.png" />
-    <Content Include="image\car-5.png" />
-    <Content Include="image\car-6.png" />
-    <Content Include="image\car-7.png" />
-    <Content Include="image\car-8.png" />
-    <Content Include="image\Car1.jpg" />
-    <Content Include="image\Car1.png" />
     <Content Include="image\home-img.png" />
     <Content Include="image\letter-bg.png" />
-    <Content Include="image\pic-1.png" />
-    <Content Include="image\pic-2.png" />
-    <Content Include="image\pic-3.png" />
-    <Content Include="image\pic-4.png" />
-    <Content Include="image\pic-5.png" />
-    <Content Include="image\pic-6.png" />
-    <Content Include="image\vehicle-1.png" />
-    <Content Include="image\vehicle-2.png" />
-    <Content Include="image\vehicle-3.png" />
-    <Content Include="image\vehicle-4.png" />
-    <Content Include="image\vehicle-5.png" />
-    <Content Include="image\vehicle-6.png" />
-    <Content Include="image\xe2.jpg" />
-    <Content Include="image\xe3.jpg" />
-    <Content Include="image\xe4.jpg" />
+    <Content Include="image\top-key.png" />
+    <Content Include="image\top-lock.png" />
+    <Content Include="image\top-note.png" />
     <Content Include="Models\Vehicle_ShowRoom_Manager_System_DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Vehicle_ShowRoom_Manager_System_DataModel.Context.cs</LastGenOutput>
@@ -308,6 +293,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\ViewAll.cshtml" />
     <Content Include="Views\Shared\_Home.cshtml" />
+    <Content Include="Views\Shared\_RegisterPartial.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

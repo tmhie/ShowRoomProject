@@ -1,25 +1,10 @@
 ﻿@model IEnumerable<Vehicle_ShowRoom_Manager_System.Models.Vehicle>
 
-@using System.Globalization 
-
 @{
     ViewBag.Title = "Index";
 }
 
 
-
-<div class="login-form-container">
-
-    <span id="close-login-form" class="fas fa-times"></span>
-
-    <form action="">
-        <h3>user login</h3>
-        <input type="email" placeholder="email" class="box">
-        <input type="password" placeholder="password" class="box">
-        <input type="submit" value="login" class="btn">
-    </form>
-
-</div>
 
 <section class="home" id="home">
 
@@ -28,7 +13,12 @@
     <img data-speed="5" class="home-parallax" src="~/image/home-img.png" alt="">
 
     <a data-speed="7" href="~/Home/ViewAll" class="btn home-parallax">explore cars</a>
-
+    <div class="search-form">
+        <form action="" class="search-bar">
+            <input type="text" placeholder="I am looking for..." name="q">
+            <button type="submit"><img src="~/image/search.jpg"></button>
+        </form>
+    </div>
 </section>
 
 <section class="icons-container">

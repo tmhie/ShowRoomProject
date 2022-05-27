@@ -16,7 +16,7 @@ namespace Vehicle_ShowRoom_Manager_System
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admins", action = "LoginAdmin", id = UrlParameter.Optional }
+                defaults: new { controller = "Admins", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
