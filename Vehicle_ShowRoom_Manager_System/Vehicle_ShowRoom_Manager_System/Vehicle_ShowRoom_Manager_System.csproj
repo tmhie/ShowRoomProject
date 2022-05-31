@@ -154,7 +154,6 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Vehicle_ShowRoom_Manager_System_DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BigViewModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Vehicle_ShowRoom_Manager_System_DataModel.tt</DependentUpon>
     </Compile>
