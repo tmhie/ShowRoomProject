@@ -14,10 +14,12 @@
 
     <a data-speed="7" href="~/Home/ViewAll" class="btn home-parallax">explore cars</a>
     <div class="search-form">
-        <form action="" class="search-bar">
-            <input type="text" placeholder="I am looking for..." name="q">
+        @using (Html.BeginForm("search", "Home", FormMethod.Get, new { @class = "search-bar" }))
+        {
+            string search = ""; 
+            @Html.TextBox("search", search, new { placeholder = "I am looking for..."});
             <button type="submit"><img src="~/image/search.jpg"></button>
-        </form>
+        }
     </div>
 </section>
 
@@ -102,7 +104,6 @@
                                 </div>
                                 <div class="price">@Html.DisplayFor(modelItem => item.Price) vnđ</div>
                                 @Html.ActionLink("check out", "CarDetail", "Home", new { id = item.VehicleId }, new { @class = "btn" })
-                                @*<a href="~/Home/CarDetail" class="btn">check out</a>*@
                             </div>
                         </div>
                     }

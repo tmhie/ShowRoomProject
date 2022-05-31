@@ -43,42 +43,12 @@
         {
             <div>Hello: @Session["UserName"]! <a>@Html.ActionLink("Logout", "Logout", "Home")</a></div>
         }
-        <div class="login-form-container">
-
-            <span id="close-login-form" class="fas fa-times"></span>
-
-            <div class="wrapper">
-                <div class="title-text">
-                    <div class="title login">
-                        Login
-                    </div>
-                    <div class="title signup">
-                        SignUp
-                    </div>
-                </div>
-                <div class="form-container">
-                    <div class="slide-controls">
-                        <input type="radio" name="slide" id="login" checked>
-                        <input type="radio" name="slide" id="signup">
-                        <label for="login" class="slide login">Login</label>
-                        <label for="signup" class="slide signup">SignUp</label>
-                        <div class="slider-tab"></div>
-                    </div>
-                    <div class="form-inner">
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
 
     </header>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-
     </div>
     <section class="footer" id="footer">
 

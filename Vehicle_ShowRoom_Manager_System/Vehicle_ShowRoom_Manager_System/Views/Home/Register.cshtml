@@ -11,6 +11,7 @@
             </div>
             @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "formlogin" }))
             {
+                @Html.AntiForgeryToken()
                 <div>
                     @Html.TextBoxFor(model => model.UserName, new { @class = "text", placeholder = "User Name" })
                 </div>

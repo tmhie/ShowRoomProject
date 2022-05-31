@@ -4,8 +4,6 @@
 @{
     ViewBag.Title = "View all";
 
-
-
 }
 
 <div class="login-form-container">
@@ -47,8 +45,8 @@
                 </div>
             }
         </div>
+        <div class="car-content">
+            @Html.PagedListPager(Model, page => Url.Action("ViewAll", new { page }))
+        </div>
     </section>
 </div>
- Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("ViewAll", new { page}))

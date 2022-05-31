@@ -24,11 +24,13 @@ namespace Project3.Controllers
             var vehicle = db.Vehicle.Include(v => v.Admin).Include(v => v.VehicleImg);           
             return View(vehicle.ToList());
         }
-        public ActionResult search(string search)
+        public ActionResult search(string search, int? page)
         {
-            var vehicle = db.Vehicle.Include(v => v.Admin).Include(v => v.VehicleImg).Where(s => s.VehicleName.Equals(search));
+            var vehicle = db.Vehicle.Include(v => v.Admin).Include(v => v.VehicleImg).Where(s => s.VehicleName.Contains(search));
             vehicle = vehicle.OrderByDescending(d => d.CreateDate);
-            return View("ViewAll", vehicle);
+            int pageNumber = (page ?? 1);
+            int pageSize = 9;
+            return View("ViewAll", vehicle.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult ViewAll(int? page)
         {
@@ -100,7 +102,8 @@ namespace Project3.Controllers
                     {
                         db.Customer.Add(user1);
                         db.SaveChanges();
-                        return RedirectToAction("Index");
+                        ModelState.AddModelError("", "Register Successful");
+                        return View(user);
                     }
                     else
                     {
