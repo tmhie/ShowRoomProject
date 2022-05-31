@@ -17,11 +17,17 @@ namespace Vehicle_ShowRoom_Manager_System.Models
     {
         public int RoomId { get; set; }
         [Display(Name = "Show room address")]
+        [Required]
         public string RoomAddress { get; set; }
+        [Required]
         public string RoomName { get; set; }
+        [Required]
         public Nullable<int> AdminId { get; set; }
+        [Required]
         public Nullable<int> CustomerId { get; set; }
+        [Required]
         public Nullable<int> VehicleId { get; set; }
+        [Required]
         public Nullable<int> Status { get; set; }
     
         public virtual Admin Admin { get; set; }

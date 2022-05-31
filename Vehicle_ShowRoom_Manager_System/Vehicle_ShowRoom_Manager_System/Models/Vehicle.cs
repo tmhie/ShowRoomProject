@@ -24,13 +24,20 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         }
     
         public int VehicleId { get; set; }
+        [Required]
         public string VehicleName { get; set; }
+        [Required]
         public string VehicleType { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public Nullable<double> Price { get; set; }
+        [Required]
         public Nullable<System.DateTime> CreateDate { get; set; }
+        [Required]
         public Nullable<int> CreateBy { get; set; }
+        [Required]
         public Nullable<int> Status { get; set; }
     
         public virtual Admin Admin { get; set; }
