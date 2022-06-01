@@ -226,7 +226,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
             MD5 md5 = new MD5CryptoServiceProvider();
             Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(password);
             Byte[] endcodeBytes = md5.ComputeHash(originalBytes);
-            return BitConverter.ToString(endcodeBytes);
+            return BitConverter.ToString(endcodeBytes).Replace("-", "").ToLower();
         }
     }
 }

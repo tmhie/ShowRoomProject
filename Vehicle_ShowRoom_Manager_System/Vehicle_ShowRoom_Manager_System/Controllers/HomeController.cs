@@ -58,10 +58,11 @@ namespace Project3.Controllers
                      
             if ( ModelState.IsValid )
             {
-                var user1 = db.Customer.Where(i => i.CustomerName == user.UserName);
-                if (user1.FirstOrDefault().Password == EncodePassword(user.Password) && user1 != null)
+                user.Password = EncodePassword(user.Password);
+                var user1 = db.Customer.Where(i => i.CustomerName == user.UserName && i.Password == user.Password);
+                if (user1.Count() > 0)
                 {
-                    Session["UserID"] = user1.FirstOrDefault().CustomerName.ToString();
+                    Session["UserID"] = user1.FirstOrDefault().CustomerId.ToString();
                     Session["UserName"] = user1.FirstOrDefault().CustomerName.ToString();
                     return RedirectToAction("ViewAll", "Home");
                 }
@@ -86,21 +87,22 @@ namespace Project3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register ([Bind(Include = "CustomerId, CustomerName, Email, Password, Address, Gender, Status")]UserRegister user)
+        public ActionResult Register (UserRegister user)
         {
             if (user.Password.Equals(user.ConfirmPassword))
             {
                 if (ModelState.IsValid) 
                 {
-                    Customer user1 = null;
-                    user1.CustomerName = user.UserName;
-                    user1.Email = user.Email;
-                    user1.Password = EncodePassword(user.Password);
-                    user1.Gender = user.Gender;
-                    user1.Address = user.Address;
-                    if(db.Customer.Where(i => i.CustomerName == user1.Password) == null)
+                    if(db.Customer.Where(i => i.CustomerName == user.UserName).Count() <= 0)
                     {
-                        db.Customer.Add(user1);
+                        db.Customer.Add(new Customer
+                        {
+                            CustomerName = user.UserName,
+                            Email = user.Email,
+                            Password = EncodePassword(user.Password),
+                            Gender = user.Gender,
+                            Address = user.Address
+                        });
                         db.SaveChanges();
                         ModelState.AddModelError("", "Register Successful");
                         return View(user);
@@ -122,7 +124,7 @@ namespace Project3.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return View("Index");
+            return RedirectToAction("Home", "Index");
         }
 
         public static string EncodePassword(string password)
@@ -130,7 +132,7 @@ namespace Project3.Controllers
             MD5 md5 = new MD5CryptoServiceProvider();
             Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(password);
             Byte[] endcodeBytes = md5.ComputeHash(originalBytes);
-            return BitConverter.ToString(endcodeBytes);
+            return BitConverter.ToString(endcodeBytes).Replace("-", "").ToLower();
         }
 
     }

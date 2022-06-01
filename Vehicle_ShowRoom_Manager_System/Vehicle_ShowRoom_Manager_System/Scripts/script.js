@@ -125,9 +125,8 @@ var swiper = new Swiper(".review-slider", {
     },
 });
 
-
-if (document.getElementById('radio')) {
-    var counter = 1;
+var counter = 1;
+if (document.getElementById('radio' + counter)) {
     setInterval(function () {
         document.getElementById('radio' + counter).checked = true;
         counter++;

@@ -16,6 +16,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
         // GET: Sales
+        [Authorize]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -55,6 +56,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Sales/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -70,6 +72,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Sales/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.AdminId = new SelectList(db.Admin, "AdminId", "AdminName");
@@ -81,6 +84,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // POST: Sales/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SaleId,VehicleId,RoomName,CustomerId,AdminId,Price,OrderDate,DaliveryDate,Status")] Sale sale)
@@ -99,6 +103,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Sales/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,6 +124,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // POST: Sales/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SaleId,VehicleId,RoomName,CustomerId,AdminId,Price,OrderDate,DaliveryDate,Status")] Sale sale)
@@ -136,6 +142,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Sales/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -151,6 +158,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // POST: Sales/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

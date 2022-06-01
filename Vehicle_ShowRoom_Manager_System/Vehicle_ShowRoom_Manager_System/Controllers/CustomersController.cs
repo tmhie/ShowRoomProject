@@ -16,6 +16,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         private Vehicle_ShowRoom_Manager_System_DataEntities db = new Vehicle_ShowRoom_Manager_System_DataEntities();
 
         // GET: Customers
+        [Authorize]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -55,6 +56,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Customers/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -70,6 +72,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Customers/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +90,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,Email,Password,Address,Gender,Status")] Customer customer)
@@ -101,6 +105,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +121,7 @@ namespace Vehicle_ShowRoom_Manager_System.Controllers
         }
 
         // POST: Customers/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
