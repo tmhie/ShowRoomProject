@@ -11,8 +11,7 @@ namespace Vehicle_ShowRoom_Manager_System.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Vehicle
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,20 +23,12 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         }
     
         public int VehicleId { get; set; }
-        [Required]
         public string VehicleName { get; set; }
-        [Required]
         public string VehicleType { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public Nullable<double> Price { get; set; }
-        [Required]
         public Nullable<System.DateTime> CreateDate { get; set; }
-        [Required]
         public Nullable<int> CreateBy { get; set; }
-        [Required]
         public Nullable<int> Status { get; set; }
     
         public virtual Admin Admin { get; set; }
@@ -47,6 +38,5 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         public virtual ICollection<ShowRoom> ShowRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleImg> VehicleImg { get; set; }
-        public virtual LoginUser loginUser { get; set; }
     }
 }

@@ -22,17 +22,11 @@ namespace Vehicle_ShowRoom_Manager_System.Models
             this.ShowRoom = new HashSet<ShowRoom>();
             this.Vehicle = new HashSet<Vehicle>();
         }
-        [Key]
+    
         public int AdminId { get; set; }
-        [Display(Name = "Employee Name")]
-        [Required]
         public string AdminName { get; set; }
-        [Required]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
         public string Password { get; set; }
-        [Required]
         public Nullable<int> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -42,6 +36,7 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vehicle> Vehicle { get; set; }
     }
+
     public class LoginAdmin
     {
         [Required]

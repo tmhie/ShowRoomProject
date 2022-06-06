@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\AK\Source\Repos\test\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\Models\Vehicle_ShowRoom_Manager_System_DataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\AK\OneDrive\Tài liệu\GitHub\ShowRoomProject\Vehicle_ShowRoom_Manager_System\Vehicle_ShowRoom_Manager_System\Models\Vehicle_ShowRoom_Manager_System_DataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

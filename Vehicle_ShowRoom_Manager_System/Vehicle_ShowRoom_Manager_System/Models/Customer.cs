@@ -23,17 +23,10 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         }
     
         public int CustomerId { get; set; }
-        [Display(Name = "User Name")]
-        [Required]
         public string CustomerName { get; set; }
-        [Required]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
         public string Password { get; set; }
-        [Required]
         public string Address { get; set; }
-        [Required]
         public string Gender { get; set; }
         public Nullable<int> Status { get; set; }
     
@@ -42,7 +35,6 @@ namespace Vehicle_ShowRoom_Manager_System.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShowRoom> ShowRoom { get; set; }
     }
-
     public class LoginUser
     {
         [Required]

@@ -11,17 +11,13 @@ namespace Vehicle_ShowRoom_Manager_System.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class VehicleImg
     {
         public int ImgId { get; set; }
-        [Required]
         public Nullable<int> VehicleId { get; set; }
-        [Required]
         public string ImgPath { get; set; }
     
         public virtual Vehicle Vehicle { get; set; }
-
     }
 }
