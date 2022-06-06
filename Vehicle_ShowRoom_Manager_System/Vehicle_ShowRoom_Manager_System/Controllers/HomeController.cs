@@ -124,7 +124,7 @@ namespace Project3.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public static string EncodePassword(string password)
